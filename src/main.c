@@ -4,7 +4,7 @@
 void msg_fun()  //消息接收判别线程 需要与其他线程通信   
 {
 	ipmsg_recv();   
-	//识别消息类型后分类处理   此函数最为复杂，需要识别全面   例如收到用户下线广播包后从链表中删除该用户
+	//识别消息类型后分类处理   此函数最为复杂，需要识别全面   例如收到用户下线广播包后从链表中删除该用户 与数据库进程通信
 }
 
 void file_fun()  //文件接收线程
@@ -12,15 +12,22 @@ void file_fun()  //文件接收线程
 	tcp_recv();
 }
 
+void db_fun()   //与数据库连接  实时跟新数据库
+{
+	
+}
+
 int main()
 {
 	ipmsg_checkin();
 
-	pthread_t msg_pid, file_pid;	
+	pthread_t msg_pid, file_pid, db_pid;	
 	pthread_create(&msg_pid, NULL, msg_fun, NULL);
 	pthread_create(&file_pid, NULL, file_fun, NULL);
+	pthread_create(&db_pid, NULL, db_fun, NULL);
 	pthread_detach(msg_pid);
 	pthread_detach(file_pid);
+	pthread_detach(db_pid);
 	
 	int ret;
 	
