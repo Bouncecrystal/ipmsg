@@ -21,6 +21,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <pthread.h>
+
 
 /*项目所需头文件*/
 #include <ipmsg.h>
