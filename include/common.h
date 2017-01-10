@@ -19,14 +19,21 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <pthread.h>
 
+/*linux网络编程头文件*/
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
 
 /*项目所需头文件*/
-#include <ipmsg.h>
-#include <list.h>
+#include "ipmsg.h"
+#include "list.h"
 
 #define MAXLINE 4096  /*一行的最大长度*/
 
