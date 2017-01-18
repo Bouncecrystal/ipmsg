@@ -1,21 +1,8 @@
-#顶层路径
-ROOT = $(firstword $(subst ipmsg, ipmsg ,$(PWD)))/ipmsg
+a.out:main.o ipmsg.o
+	cc -o a.out main.o ipmsg.o -L../lib -lcommon -lpthread -lmysqlclient
 
-#包含编译规则
-include $(ROOT)/Rules.make
-
-#获取当前目录所有的.c文件
-CSOURCES = $(wildcard *.c)
-
-#去掉所有文件的.c后缀，作为目标文件名
-targets = $(CSOURCES:.c=)
-
-all:$(targets)
-
-
-%:%.c
-	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)
+main.o ipmsg.o:main.c ipmsg.c
+	cc -c main.c ipmsg.c
 
 clean:
-	rm -f $(targets) $(TEMPFILES) *.o
-
+	rm -f a.out *.o

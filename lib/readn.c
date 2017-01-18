@@ -1,4 +1,4 @@
-#include "common.h"
+#include "../include/common.h"
 #include <errno.h>
 //¶ÁÈ¡n¸ö×Ö½Ú
 ssize_t readn(int fd, void *buf, size_t count)

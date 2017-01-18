@@ -12,7 +12,7 @@ include $(ROOT)/Rules.make
 target = libcommon.a
 
 #依赖的目标文件名
-OBJS = error.o
+OBJS = error.o readn.o
 
 #如果程序要支持段错误调试，则把sigsegv.c加入到库文件中
 ifeq ($(support_sigdebug), y)

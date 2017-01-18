@@ -1,11 +1,6 @@
 #ifndef __COMMON_H
 #define __COMMON_H
 
-/*
-	File		:common.h
-	Description	:自定义的头文件，包含常用的系统头文件，常用的宏，自定义的工具函数
-*/
-
 /*头文件统一包含*/
 
 /*标准头文件*/
@@ -21,19 +16,23 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
 #include <signal.h>
 #include <pthread.h>
+#include <dirent.h>  //文件目录操作
 
 /*linux网络编程头文件*/
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+#include <net/if.h>
+#include <net/if_arp.h>
 
 /*项目所需头文件*/
 #include "ipmsg.h"
 #include "list.h"
+#include <mysql/mysql.h>
 
 #define MAXLINE 4096  /*一行的最大长度*/
 
@@ -70,7 +69,7 @@
         abort();\
     }\
 }while(0)
-	
+
 /*使用typedef实现布尔类型*/
 typedef enum{false, true}bool;
 
@@ -79,7 +78,8 @@ typedef enum{false, true}bool;
 	typeof(a) __a = (a);\
 	typeof(b) __b = (b);\
 	__a > __b ? __a : __b;\
-})
+})
+
 /*
     *Function   : get_random_string
     *Description: 产生长度为length - 1的随机字符串
